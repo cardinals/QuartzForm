@@ -24,6 +24,7 @@ namespace Script.I200.QuartzJob.Jobs
 
                 //运行
                 Run(context);
+
             }
             catch (Exception ex)
             {

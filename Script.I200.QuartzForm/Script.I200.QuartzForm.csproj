@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="C5">
+      <HintPath>..\..\..\文档\gitExerciseCode\Script.I200.QuartzForm\packages\ReferenceFactory\C5.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\packages\ReferenceFactory\Castle.Core.dll</HintPath>
     </Reference>

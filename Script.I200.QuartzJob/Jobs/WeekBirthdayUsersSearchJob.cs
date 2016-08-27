@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Globalization;
 using Quartz;
+using Script.I200.QuartzJob.CommonLib;
+using Script.I200.QuartzJob.Models;
 
 namespace Script.I200.QuartzJob.Jobs
 {
@@ -19,7 +24,29 @@ namespace Script.I200.QuartzJob.Jobs
 
         protected override void Run(IJobExecutionContext context)
         {
+            var searchParam = new SearchDateParams
+            {
+                BeginDate = new DateTime(1900, 3, 1),
+                EndDate = new DateTime(1900, 8, 25)
+            };
+
+
             //TODO: 调用接口处理业务逻辑
+            var formData = new Dictionary<string, string>
+            {
+                {"BeginDate", new DateTime(1900, 3, 1).ToString(CultureInfo.InvariantCulture)},
+                {"EndDate", new DateTime(1900, 8, 25).ToString(CultureInfo.InvariantCulture)}
+            };
+            try
+            {
+                var jobAddress = ConfigurationManager.AppSettings["JobAddress"];
+                var retJson = HttpUtility.HttpGet(jobAddress + "v0/userjobs/searchBirthdayUsersJob", null,
+                    null);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteLog(typeof (SearchDateParams), ex.Message);
+            }
         }
 
         protected override void RunComplete(IJobExecutionContext context, Exception error, TimeSpan elapsed)

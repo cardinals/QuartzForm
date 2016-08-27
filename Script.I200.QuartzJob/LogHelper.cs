@@ -43,6 +43,5 @@ namespace Script.I200.QuartzJob
 
         #endregion
 
-
     }
 }
